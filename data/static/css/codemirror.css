@@ -1,0 +1,137 @@
+@import url('normalize.css');
+
+html,body,form{
+	height: 100%;
+	font-family: Arial,"微軟正黑體";
+}
+
+.fas,a{
+	text-decoration: none;
+	color: white;
+}
+
+
+.wrapper,.content{
+	height: 100%;
+}
+
+.CodeMirror{
+	height: 89%;
+	font-size: 20px;
+	line-height: 1.5;
+	padding-left: 10px;
+}
+
+.input{
+	float: left;
+	width: 50%;
+	height:100%;
+	background-color: #282A36;
+}
+
+.output{
+	float: right;
+	width: 50%;
+	height: 100%;
+}
+
+.submit{
+	position:fixed;
+	bottom: 0;
+	width: 50%;
+	height: 38px;
+	/*z-index: 10;*/
+}
+
+.submit input{
+	width: 75.8px;
+	height: 38px;
+	display: flex;
+	margin-left: auto;
+}
+
+.CodeMirror-lines{
+	border-left:1px solid #595959;
+}
+
+/*-----------------tooltop-----------------*/
+.tool-top{
+	background-color: #282A36;
+	border-bottom: 1px solid #595959;
+}
+
+.tool-top ul{
+	display: flex;	
+	width: 100%;
+	height: 40px;
+	margin: 0px;
+	padding:0px;
+}
+
+.tool-top li{
+	display: flex;
+	margin: auto 0;
+	width: 40px;
+	height: 20px;
+	border-right: 1px solid #fff;
+}
+
+.tool-top span{
+	cursor: pointer;
+	margin: auto;
+}
+
+.tool-top i{
+	color: #fff;
+}
+
+/*-----------------dropdown-----------------*/
+
+.dropdown{
+  	/*display: inline-block;*/
+	margin: auto 0;
+}
+
+.dropdown li{
+	width: 50px;
+}
+
+.dropdown i{
+	margin: 3px;
+}
+
+.dropdown span{
+	position: relative;
+}
+
+
+/*--------dropdown-content--------*/
+
+.dropdown-content {
+  	display: none;
+  	position: absolute;
+  	top: 22px;
+  	background-color: #e6e6e6;
+  	width: 50px;
+  	z-index: 3;
+}
+
+.dropdown-content span{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dropdown-content ul{
+	border: none;
+}
+
+.dropdown-content ul:hover{
+	background-color: #cccccc;
+}
+
+.dropdown:hover .dropdown-content {
+ 	display: block;
+}

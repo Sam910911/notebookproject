@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>高三專題</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <script src="{{ url_for('static',filename='js/jquery-3.5.0.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class='wrapper'>
+        <div class="sidetool">
+            <div class="sidetool-inner">
+                <div class="workplace">
+                    <a href="#">
+                        <span><i class="fas fa-book"></i></span> NoteDE
+                    </a>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="search" placeholder="Search...">
+                        <button id="search"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+    
+                <ul class="side-get">
+                    <li class="">
+                        <a href="{{url_for('codemirror', user = user)}}">
+                            <span class="icon">
+                                <i class="fas fa fa-plus"></i>
+                            </span>ADD
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('codemirror', user = user)}}">
+                            <span class="icon">
+                                <i class="fas fa fa-clipboard-list"></i>
+                            </span>TO DO
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('codemirror', user = user)}}">
+                            <span class="icon">
+                                <i class="fas fa fa-bookmark"></i>
+                            </span>READING LIST
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('codemirror', user = user)}}">
+                            <span class="icon">
+                                <i class="fas fa fa-utensils"></i>
+                            </span>RECIPE
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('codemirror', user = user)}}">
+                            <span class="icon">
+                                <i class="fas fa fa-divide"></i>
+                            </span>FORMULA
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+            <div class="content">
+                
+                <div class="header">
+                    <!-- <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Option</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div> -->  
+                </div>  
+
+                <div class="list-section">
+                    <h1><span>筆記存放區</span></h1>
+                    <ul class="list">
+                        {% for tag in title %}
+                        <li class="list-style-none">    
+                            <div class="card-container">
+                                <a class="card-archor" href="{{url_for('codemirroredit', user = user, notetag = tag)}}"></a>
+                                <div class="item">
+                                    <i class="fas fa-thumbtack pin"></i>
+                                        <div class="item-content">
+                                            <h4 class="item-end" title="name"><span class="title">{{ tag }}</span></h4>
+                                        </div>
+                                    <a href="{{url_for('delete',user = user , notetag = tag)}}" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+html, body {
+	height: 100vh;
+}
+body {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#root {
+	margin-top: -20vh;
+}
+
+input{
+	font-size: 25px;
+}

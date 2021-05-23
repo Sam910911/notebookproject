@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<script src="{{url_for('static', filename = 'codemirrorsource/lib/codemirror.js')}}"></script>
+	<script src="{{url_for('static', filename = 'codemirrorsource/mode/xml/xml.js')}}"></script>
+	<script src="{{url_for('static', filename = 'codemirrorsource/addon/edit/closetag.js')}}"></script>
+	<script src="{{url_for('static', filename = 'codemirrorsource/addon/fold/foldcode.js')}}"></script>
+	<script src="{{url_for('static', filename = 'codemirrorsource/addon/fold/foldgutter.js')}}"></script>
+	<script src="{{url_for('static', filename = 'codemirrorsource/addon/fold/xml-fold.js')}}"></script>
+	<script src="{{url_for('static', filename = 'codemirrorsource/addon/selection/active-line.js')}}"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{url_for('static', filename = 'codemirrorsource/addon/fold/foldgutter.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename = 'codemirrorsource/lib/codemirror.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename = 'codemirrorsource/theme/dracula.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename = 'css/codemirror.css')}}">
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="{{url_for('static', filename = 'js/codemirror_jquery.js')}}"></script>
+	<!-- <script src="codemirror_javascript.js"></script> -->
+
+	<title>Add Notebook</title>
+</head>
+<body>
+	<form method="post">
+		<div class="wrapper">
+			<div class="content">
+				<div class="input">
+					<div class="tool-top">
+						<ul>
+							<li><span class="button" value="bold"><i class="fas fa-bold"></i></span></li>
+							<li><span class="button" value="italic"><i class="fas fa-italic"></i></span></li>
+							<!-- <li><a class="button" value="heading"><i class="fas fa-heading"></i></a></li> -->
+							<div class="dropdown">
+								<li><span class="button" value="heading"><i class="fas fa-heading"></i><i class="fas fa-caret-down"></i></span></li>
+								<div class="dropdown-content">
+									<ul><span class="button" value="h1">h1</span></ul>
+									<ul><span class="button" value="h2">h2</span></ul>	
+									<ul><span class="button" value="p">p</span></ul>
+									
+								</div>
+							</div>
+							<li><span class="button" value="blockquote"><i class="fas fa-quote-right"></i></span></li>
+						</ul>
+					</div>
+					{% if edit %}
+					<textarea name="codemirror" id="editor">{{text}}</textarea>
+					{% else %}
+					<textarea name="codemirror" id="editor"></textarea>
+					{% endif %}
+					<div class="submit">
+						<input  class="btn btn-secondary btn-md" id="show" value="Show" onclick="showcode()">
+					</div>
+				</div>
+				<div class="output">
+					<div class="output-content" id="text"></div>
+					<div class="submit">
+						<input type="submit" name='save_note'class="btn btn-primary btn-md" value="Submit" id="submit">
+					</div>
+				</div>	
+			</div>
+		</div>
+	</form>
+	<script>
+		
+		var edit = CodeMirror.fromTextArea(document.getElementById('editor'),{
+			mode: "xml",
+			theme: "dracula",
+			lineNumbers: true,
+			lineWrapping: true,
+			styleActiveLine: true,
+			extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+			autoCloseTags: true,
+			foldGutter: true,
+			gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+
+		});
+
+		edit.foldCode(CodeMirror.Pos(8, 0));
+
+		function showcode(){
+			var text = edit.getValue();
+			var output = document.getElementById('text');
+			output.innerHTML = text;
+			console.log(text)
+		}
+
+	</script>
+
+</body>
+</html>
