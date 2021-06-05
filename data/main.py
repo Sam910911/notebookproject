@@ -110,33 +110,3 @@ def delete(user, notetag):
     return redirect(url_for('main', user = user))
 if __name__ == "__main__":
     app.run(debug=True)
-#======================================test1============================================
-'''
-noteID = 1
-try:
-    while True:
-        doc_ref.collection('note').document('note' + str(noteID)).delete()
-except:
-    continue
-'''
-#======================================test2============================================
-'''
-from flask import Flask
-app = Flask(__name__)
-@app.route('/')
-def index():
-    return 'hello man'
-
-
-@app.route('/user/<username>')
-def username(username):'
-    return 'i am ' + username
-
-
-@app.route('/age/<int:age>')
-def userage(age):
-    return 'i am ' + str(age) + 'years old'
-
-if __name__ == "__main__":
-    app.run(debug=True)
-'''
